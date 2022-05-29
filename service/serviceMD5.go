@@ -7,7 +7,7 @@ import (
 	"io"
 	"os"
 
-	rmaster "main.go/dto"
+	rmaster "github.com/RxDAF/Master/dto"
 )
 
 func (s *RService) loadServiceFile(serviceName string) (io.ReadCloser, error) {

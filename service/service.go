@@ -3,7 +3,7 @@ package service
 import (
 	"sync"
 
-	"main.go/cfg"
+	"github.com/RxDAF/Master/cfg"
 )
 
 type RService struct {

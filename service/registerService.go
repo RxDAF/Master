@@ -3,7 +3,7 @@ package service
 import (
 	"context"
 
-	rmaster "main.go/dto"
+	rmaster "github.com/RxDAF/Master/dto"
 )
 
 func (s *RService) MountServer(serviceName string, serverInformation *server) {
