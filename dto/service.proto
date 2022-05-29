@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package rmaster;
+
+option go_package = "./;rmaster";
+
+service RMaster {
+    rpc RegisterService(RegisterServiceRequest) returns(RegisterServiceResult){}
+    rpc ServiceFileMD5(ServiceFileMD5Request) returns(ServiceFileMD5Result){}
+}
+message RegisterServiceRequest {
+    string address = 1;
+    repeated string roles = 2;
+}
+message RegisterServiceResult {
+    
+}
+message ServiceFileMD5Request {
+    string serviceName = 1;
+}
+message ServiceFileMD5Result {
+    string md5 = 1;
+}
