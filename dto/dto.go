@@ -1,6 +1,7 @@
 package rmaster
 
 import (
+	"bytes"
 	"context"
 
 	grpc "google.golang.org/grpc"
@@ -37,4 +38,27 @@ func (r *RMaster) ServiceFileMD5(serviceName string) (md5 string, err error) {
 	}
 	md5 = res.Md5
 	return
+}
+func (r *RMaster) DownloadService(serviceName string) ([]byte, error) {
+	res, err := r.client.DownloadService(context.Background(), &DownloadServiceRequest{
+		ServiceName: serviceName,
+	})
+	if err != nil {
+		return nil, err
+	}
+	var buf bytes.Buffer
+	for {
+		resp, err := res.Recv()
+		if err != nil {
+			return nil, err
+		}
+		if len(resp.Data) == 0 { // 下载完成
+			break
+		}
+		_, err = buf.Write(resp.Data)
+		if err != nil {
+			return nil, err
+		}
+	}
+	return buf.Bytes(), nil
 }

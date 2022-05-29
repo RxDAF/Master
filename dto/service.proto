@@ -7,6 +7,7 @@ option go_package = "./;rmaster";
 service RMaster {
     rpc RegisterService(RegisterServiceRequest) returns(RegisterServiceResult){}
     rpc ServiceFileMD5(ServiceFileMD5Request) returns(ServiceFileMD5Result){}
+    rpc DownloadService(DownloadServiceRequest) returns(stream DownloadServiceResult){}
 }
 message RegisterServiceRequest {
     string address = 1;
@@ -20,4 +21,10 @@ message ServiceFileMD5Request {
 }
 message ServiceFileMD5Result {
     string md5 = 1;
+}
+message DownloadServiceRequest {
+    string serviceName = 1;
+}
+message DownloadServiceResult {
+    bytes data = 1;
 }

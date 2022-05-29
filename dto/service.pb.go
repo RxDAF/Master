@@ -211,6 +211,100 @@ func (x *ServiceFileMD5Result) GetMd5() string {
 	return ""
 }
 
+type DownloadServiceRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	ServiceName string `protobuf:"bytes,1,opt,name=serviceName,proto3" json:"serviceName,omitempty"`
+}
+
+func (x *DownloadServiceRequest) Reset() {
+	*x = DownloadServiceRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_proto_msgTypes[4]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *DownloadServiceRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DownloadServiceRequest) ProtoMessage() {}
+
+func (x *DownloadServiceRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_service_proto_msgTypes[4]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DownloadServiceRequest.ProtoReflect.Descriptor instead.
+func (*DownloadServiceRequest) Descriptor() ([]byte, []int) {
+	return file_service_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *DownloadServiceRequest) GetServiceName() string {
+	if x != nil {
+		return x.ServiceName
+	}
+	return ""
+}
+
+type DownloadServiceResult struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Data []byte `protobuf:"bytes,1,opt,name=data,proto3" json:"data,omitempty"`
+}
+
+func (x *DownloadServiceResult) Reset() {
+	*x = DownloadServiceResult{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_proto_msgTypes[5]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *DownloadServiceResult) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DownloadServiceResult) ProtoMessage() {}
+
+func (x *DownloadServiceResult) ProtoReflect() protoreflect.Message {
+	mi := &file_service_proto_msgTypes[5]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DownloadServiceResult.ProtoReflect.Descriptor instead.
+func (*DownloadServiceResult) Descriptor() ([]byte, []int) {
+	return file_service_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *DownloadServiceResult) GetData() []byte {
+	if x != nil {
+		return x.Data
+	}
+	return nil
+}
+
 var File_service_proto protoreflect.FileDescriptor
 
 var file_service_proto_rawDesc = []byte{
@@ -228,19 +322,31 @@ var file_service_proto_rawDesc = []byte{
 	0x63, 0x65, 0x4e, 0x61, 0x6d, 0x65, 0x22, 0x28, 0x0a, 0x14, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63,
 	0x65, 0x46, 0x69, 0x6c, 0x65, 0x4d, 0x44, 0x35, 0x52, 0x65, 0x73, 0x75, 0x6c, 0x74, 0x12, 0x10,
 	0x0a, 0x03, 0x6d, 0x64, 0x35, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x6d, 0x64, 0x35,
-	0x32, 0xb2, 0x01, 0x0a, 0x07, 0x52, 0x4d, 0x61, 0x73, 0x74, 0x65, 0x72, 0x12, 0x54, 0x0a, 0x0f,
-	0x52, 0x65, 0x67, 0x69, 0x73, 0x74, 0x65, 0x72, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x12,
-	0x1f, 0x2e, 0x72, 0x6d, 0x61, 0x73, 0x74, 0x65, 0x72, 0x2e, 0x52, 0x65, 0x67, 0x69, 0x73, 0x74,
-	0x65, 0x72, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
-	0x1a, 0x1e, 0x2e, 0x72, 0x6d, 0x61, 0x73, 0x74, 0x65, 0x72, 0x2e, 0x52, 0x65, 0x67, 0x69, 0x73,
-	0x74, 0x65, 0x72, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x52, 0x65, 0x73, 0x75, 0x6c, 0x74,
-	0x22, 0x00, 0x12, 0x51, 0x0a, 0x0e, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x46, 0x69, 0x6c,
-	0x65, 0x4d, 0x44, 0x35, 0x12, 0x1e, 0x2e, 0x72, 0x6d, 0x61, 0x73, 0x74, 0x65, 0x72, 0x2e, 0x53,
-	0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x46, 0x69, 0x6c, 0x65, 0x4d, 0x44, 0x35, 0x52, 0x65, 0x71,
-	0x75, 0x65, 0x73, 0x74, 0x1a, 0x1d, 0x2e, 0x72, 0x6d, 0x61, 0x73, 0x74, 0x65, 0x72, 0x2e, 0x53,
-	0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x46, 0x69, 0x6c, 0x65, 0x4d, 0x44, 0x35, 0x52, 0x65, 0x73,
-	0x75, 0x6c, 0x74, 0x22, 0x00, 0x42, 0x0c, 0x5a, 0x0a, 0x2e, 0x2f, 0x3b, 0x72, 0x6d, 0x61, 0x73,
-	0x74, 0x65, 0x72, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x22, 0x3a, 0x0a, 0x16, 0x44, 0x6f, 0x77, 0x6e, 0x6c, 0x6f, 0x61, 0x64, 0x53, 0x65, 0x72, 0x76,
+	0x69, 0x63, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x20, 0x0a, 0x0b, 0x73, 0x65,
+	0x72, 0x76, 0x69, 0x63, 0x65, 0x4e, 0x61, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52,
+	0x0b, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x4e, 0x61, 0x6d, 0x65, 0x22, 0x2b, 0x0a, 0x15,
+	0x44, 0x6f, 0x77, 0x6e, 0x6c, 0x6f, 0x61, 0x64, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x52,
+	0x65, 0x73, 0x75, 0x6c, 0x74, 0x12, 0x12, 0x0a, 0x04, 0x64, 0x61, 0x74, 0x61, 0x18, 0x01, 0x20,
+	0x01, 0x28, 0x0c, 0x52, 0x04, 0x64, 0x61, 0x74, 0x61, 0x32, 0x8a, 0x02, 0x0a, 0x07, 0x52, 0x4d,
+	0x61, 0x73, 0x74, 0x65, 0x72, 0x12, 0x54, 0x0a, 0x0f, 0x52, 0x65, 0x67, 0x69, 0x73, 0x74, 0x65,
+	0x72, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x12, 0x1f, 0x2e, 0x72, 0x6d, 0x61, 0x73, 0x74,
+	0x65, 0x72, 0x2e, 0x52, 0x65, 0x67, 0x69, 0x73, 0x74, 0x65, 0x72, 0x53, 0x65, 0x72, 0x76, 0x69,
+	0x63, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x1e, 0x2e, 0x72, 0x6d, 0x61, 0x73,
+	0x74, 0x65, 0x72, 0x2e, 0x52, 0x65, 0x67, 0x69, 0x73, 0x74, 0x65, 0x72, 0x53, 0x65, 0x72, 0x76,
+	0x69, 0x63, 0x65, 0x52, 0x65, 0x73, 0x75, 0x6c, 0x74, 0x22, 0x00, 0x12, 0x51, 0x0a, 0x0e, 0x53,
+	0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x46, 0x69, 0x6c, 0x65, 0x4d, 0x44, 0x35, 0x12, 0x1e, 0x2e,
+	0x72, 0x6d, 0x61, 0x73, 0x74, 0x65, 0x72, 0x2e, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x46,
+	0x69, 0x6c, 0x65, 0x4d, 0x44, 0x35, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x1d, 0x2e,
+	0x72, 0x6d, 0x61, 0x73, 0x74, 0x65, 0x72, 0x2e, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x46,
+	0x69, 0x6c, 0x65, 0x4d, 0x44, 0x35, 0x52, 0x65, 0x73, 0x75, 0x6c, 0x74, 0x22, 0x00, 0x12, 0x56,
+	0x0a, 0x0f, 0x44, 0x6f, 0x77, 0x6e, 0x6c, 0x6f, 0x61, 0x64, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63,
+	0x65, 0x12, 0x1f, 0x2e, 0x72, 0x6d, 0x61, 0x73, 0x74, 0x65, 0x72, 0x2e, 0x44, 0x6f, 0x77, 0x6e,
+	0x6c, 0x6f, 0x61, 0x64, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65,
+	0x73, 0x74, 0x1a, 0x1e, 0x2e, 0x72, 0x6d, 0x61, 0x73, 0x74, 0x65, 0x72, 0x2e, 0x44, 0x6f, 0x77,
+	0x6e, 0x6c, 0x6f, 0x61, 0x64, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x52, 0x65, 0x73, 0x75,
+	0x6c, 0x74, 0x22, 0x00, 0x30, 0x01, 0x42, 0x0c, 0x5a, 0x0a, 0x2e, 0x2f, 0x3b, 0x72, 0x6d, 0x61,
+	0x73, 0x74, 0x65, 0x72, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -255,20 +361,24 @@ func file_service_proto_rawDescGZIP() []byte {
 	return file_service_proto_rawDescData
 }
 
-var file_service_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
+var file_service_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
 var file_service_proto_goTypes = []interface{}{
 	(*RegisterServiceRequest)(nil), // 0: rmaster.RegisterServiceRequest
 	(*RegisterServiceResult)(nil),  // 1: rmaster.RegisterServiceResult
 	(*ServiceFileMD5Request)(nil),  // 2: rmaster.ServiceFileMD5Request
 	(*ServiceFileMD5Result)(nil),   // 3: rmaster.ServiceFileMD5Result
+	(*DownloadServiceRequest)(nil), // 4: rmaster.DownloadServiceRequest
+	(*DownloadServiceResult)(nil),  // 5: rmaster.DownloadServiceResult
 }
 var file_service_proto_depIdxs = []int32{
 	0, // 0: rmaster.RMaster.RegisterService:input_type -> rmaster.RegisterServiceRequest
 	2, // 1: rmaster.RMaster.ServiceFileMD5:input_type -> rmaster.ServiceFileMD5Request
-	1, // 2: rmaster.RMaster.RegisterService:output_type -> rmaster.RegisterServiceResult
-	3, // 3: rmaster.RMaster.ServiceFileMD5:output_type -> rmaster.ServiceFileMD5Result
-	2, // [2:4] is the sub-list for method output_type
-	0, // [0:2] is the sub-list for method input_type
+	4, // 2: rmaster.RMaster.DownloadService:input_type -> rmaster.DownloadServiceRequest
+	1, // 3: rmaster.RMaster.RegisterService:output_type -> rmaster.RegisterServiceResult
+	3, // 4: rmaster.RMaster.ServiceFileMD5:output_type -> rmaster.ServiceFileMD5Result
+	5, // 5: rmaster.RMaster.DownloadService:output_type -> rmaster.DownloadServiceResult
+	3, // [3:6] is the sub-list for method output_type
+	0, // [0:3] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
 	0, // [0:0] is the sub-list for extension extendee
 	0, // [0:0] is the sub-list for field type_name
@@ -328,6 +438,30 @@ func file_service_proto_init() {
 				return nil
 			}
 		}
+		file_service_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*DownloadServiceRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*DownloadServiceResult); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
@@ -335,7 +469,7 @@ func file_service_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_service_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   4,
+			NumMessages:   6,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
@@ -363,6 +497,7 @@ const _ = grpc.SupportPackageIsVersion6
 type RMasterClient interface {
 	RegisterService(ctx context.Context, in *RegisterServiceRequest, opts ...grpc.CallOption) (*RegisterServiceResult, error)
 	ServiceFileMD5(ctx context.Context, in *ServiceFileMD5Request, opts ...grpc.CallOption) (*ServiceFileMD5Result, error)
+	DownloadService(ctx context.Context, in *DownloadServiceRequest, opts ...grpc.CallOption) (RMaster_DownloadServiceClient, error)
 }
 
 type rMasterClient struct {
@@ -391,10 +526,43 @@ func (c *rMasterClient) ServiceFileMD5(ctx context.Context, in *ServiceFileMD5Re
 	return out, nil
 }
 
+func (c *rMasterClient) DownloadService(ctx context.Context, in *DownloadServiceRequest, opts ...grpc.CallOption) (RMaster_DownloadServiceClient, error) {
+	stream, err := c.cc.NewStream(ctx, &_RMaster_serviceDesc.Streams[0], "/rmaster.RMaster/DownloadService", opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &rMasterDownloadServiceClient{stream}
+	if err := x.ClientStream.SendMsg(in); err != nil {
+		return nil, err
+	}
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	return x, nil
+}
+
+type RMaster_DownloadServiceClient interface {
+	Recv() (*DownloadServiceResult, error)
+	grpc.ClientStream
+}
+
+type rMasterDownloadServiceClient struct {
+	grpc.ClientStream
+}
+
+func (x *rMasterDownloadServiceClient) Recv() (*DownloadServiceResult, error) {
+	m := new(DownloadServiceResult)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
 // RMasterServer is the server API for RMaster service.
 type RMasterServer interface {
 	RegisterService(context.Context, *RegisterServiceRequest) (*RegisterServiceResult, error)
 	ServiceFileMD5(context.Context, *ServiceFileMD5Request) (*ServiceFileMD5Result, error)
+	DownloadService(*DownloadServiceRequest, RMaster_DownloadServiceServer) error
 }
 
 // UnimplementedRMasterServer can be embedded to have forward compatible implementations.
@@ -406,6 +574,9 @@ func (*UnimplementedRMasterServer) RegisterService(context.Context, *RegisterSer
 }
 func (*UnimplementedRMasterServer) ServiceFileMD5(context.Context, *ServiceFileMD5Request) (*ServiceFileMD5Result, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ServiceFileMD5 not implemented")
+}
+func (*UnimplementedRMasterServer) DownloadService(*DownloadServiceRequest, RMaster_DownloadServiceServer) error {
+	return status.Errorf(codes.Unimplemented, "method DownloadService not implemented")
 }
 
 func RegisterRMasterServer(s *grpc.Server, srv RMasterServer) {
@@ -448,6 +619,27 @@ func _RMaster_ServiceFileMD5_Handler(srv interface{}, ctx context.Context, dec f
 	return interceptor(ctx, in, info, handler)
 }
 
+func _RMaster_DownloadService_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(DownloadServiceRequest)
+	if err := stream.RecvMsg(m); err != nil {
+		return err
+	}
+	return srv.(RMasterServer).DownloadService(m, &rMasterDownloadServiceServer{stream})
+}
+
+type RMaster_DownloadServiceServer interface {
+	Send(*DownloadServiceResult) error
+	grpc.ServerStream
+}
+
+type rMasterDownloadServiceServer struct {
+	grpc.ServerStream
+}
+
+func (x *rMasterDownloadServiceServer) Send(m *DownloadServiceResult) error {
+	return x.ServerStream.SendMsg(m)
+}
+
 var _RMaster_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "rmaster.RMaster",
 	HandlerType: (*RMasterServer)(nil),
@@ -461,6 +653,12 @@ var _RMaster_serviceDesc = grpc.ServiceDesc{
 			Handler:    _RMaster_ServiceFileMD5_Handler,
 		},
 	},
-	Streams:  []grpc.StreamDesc{},
+	Streams: []grpc.StreamDesc{
+		{
+			StreamName:    "DownloadService",
+			Handler:       _RMaster_DownloadService_Handler,
+			ServerStreams: true,
+		},
+	},
 	Metadata: "service.proto",
 }
