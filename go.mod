@@ -1,4 +1,4 @@
-module main.go
+module github.com/RxDAF/Master
 
 go 1.18
 
