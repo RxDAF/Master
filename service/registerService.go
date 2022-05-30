@@ -25,10 +25,19 @@ func (s *RService) MountServer(serviceName string, serverInformation *server) {
 }
 func (s *RService) RegisterService(ctx context.Context, r *rmaster.RegisterServiceRequest) (*rmaster.RegisterServiceResult, error) {
 	serverInformation := &server{
-		Address: r.Address,
+		Address:  r.Address,
+		Services: make(map[string]*serviceStatus),
+	}
+	for _, service := range r.Roles {
+		serverInformation.Services[service] = &serviceStatus{
+			Online: false,
+		}
 	}
 	for _, serviceName := range r.Roles {
 		s.MountServer(serviceName, serverInformation)
 	}
+	s.serversLock.Lock()
+	s.servers[r.Address] = serverInformation
+	s.serversLock.Unlock()
 	return &rmaster.RegisterServiceResult{}, nil
 }

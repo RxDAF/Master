@@ -62,3 +62,7 @@ func (r *RMaster) DownloadService(serviceName string) ([]byte, error) {
 	}
 	return buf.Bytes(), nil
 }
+func (r *RMaster) SetupConnect() (RMaster_StatusUpdateClient, error) {
+	conn, err := r.client.StatusUpdate(context.Background())
+	return conn, err
+}

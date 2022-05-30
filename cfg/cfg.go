@@ -8,7 +8,8 @@ import (
 )
 
 type Configure struct {
-	ServicesPath string `yaml:"servicesPath"` // 各个微服务的压缩包文件目录
+	ServicesPath string            `yaml:"servicesPath"` // 各个微服务的压缩包文件目录
+	Services     map[string]string `yaml:"services"`
 }
 
 func NewCFG(file string) (*Configure, error) {
