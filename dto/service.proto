@@ -8,6 +8,7 @@ service RMaster {
     rpc RegisterService(RegisterServiceRequest) returns(RegisterServiceResult){}
     rpc ServiceFileMD5(ServiceFileMD5Request) returns(ServiceFileMD5Result){}
     rpc DownloadService(DownloadServiceRequest) returns(stream DownloadServiceResult){}
+    rpc StatusUpdate(stream StatusUpdateInfo) returns(stream StatusUpdateReq){}
 }
 message RegisterServiceRequest {
     string address = 1;
@@ -27,4 +28,23 @@ message DownloadServiceRequest {
 }
 message DownloadServiceResult {
     bytes data = 1;
+}
+message ServiceStatusChange {
+    string serviceName = 1;
+    bool newStatus = 2;
+    string extraInfo = 3;
+}
+message StatusUpdateInfo {  // 用于通知Master本地的状态变化
+    oneof StatusUpdate {
+        ServiceStatusChange service = 1;    // 服务上下线通知
+        StatusUpdateInfoCertification certification = 2;
+    }
+}
+message StatusUpdateInfoCertification {
+    string address = 1;
+}
+message StatusUpdateReq {   // 用于Master要求状态变化
+    oneof StatusUpdate {
+        ServiceStatusChange service = 1;    // 服务上下线要求
+    }
 }

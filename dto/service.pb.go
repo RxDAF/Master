@@ -305,6 +305,262 @@ func (x *DownloadServiceResult) GetData() []byte {
 	return nil
 }
 
+type ServiceStatusChange struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	ServiceName string `protobuf:"bytes,1,opt,name=serviceName,proto3" json:"serviceName,omitempty"`
+	NewStatus   bool   `protobuf:"varint,2,opt,name=newStatus,proto3" json:"newStatus,omitempty"`
+	ExtraInfo   string `protobuf:"bytes,3,opt,name=extraInfo,proto3" json:"extraInfo,omitempty"`
+}
+
+func (x *ServiceStatusChange) Reset() {
+	*x = ServiceStatusChange{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_proto_msgTypes[6]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ServiceStatusChange) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ServiceStatusChange) ProtoMessage() {}
+
+func (x *ServiceStatusChange) ProtoReflect() protoreflect.Message {
+	mi := &file_service_proto_msgTypes[6]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ServiceStatusChange.ProtoReflect.Descriptor instead.
+func (*ServiceStatusChange) Descriptor() ([]byte, []int) {
+	return file_service_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *ServiceStatusChange) GetServiceName() string {
+	if x != nil {
+		return x.ServiceName
+	}
+	return ""
+}
+
+func (x *ServiceStatusChange) GetNewStatus() bool {
+	if x != nil {
+		return x.NewStatus
+	}
+	return false
+}
+
+func (x *ServiceStatusChange) GetExtraInfo() string {
+	if x != nil {
+		return x.ExtraInfo
+	}
+	return ""
+}
+
+type StatusUpdateInfo struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// Types that are assignable to StatusUpdate:
+	//	*StatusUpdateInfo_Service
+	//	*StatusUpdateInfo_Certification
+	StatusUpdate isStatusUpdateInfo_StatusUpdate `protobuf_oneof:"StatusUpdate"`
+}
+
+func (x *StatusUpdateInfo) Reset() {
+	*x = StatusUpdateInfo{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_proto_msgTypes[7]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *StatusUpdateInfo) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*StatusUpdateInfo) ProtoMessage() {}
+
+func (x *StatusUpdateInfo) ProtoReflect() protoreflect.Message {
+	mi := &file_service_proto_msgTypes[7]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use StatusUpdateInfo.ProtoReflect.Descriptor instead.
+func (*StatusUpdateInfo) Descriptor() ([]byte, []int) {
+	return file_service_proto_rawDescGZIP(), []int{7}
+}
+
+func (m *StatusUpdateInfo) GetStatusUpdate() isStatusUpdateInfo_StatusUpdate {
+	if m != nil {
+		return m.StatusUpdate
+	}
+	return nil
+}
+
+func (x *StatusUpdateInfo) GetService() *ServiceStatusChange {
+	if x, ok := x.GetStatusUpdate().(*StatusUpdateInfo_Service); ok {
+		return x.Service
+	}
+	return nil
+}
+
+func (x *StatusUpdateInfo) GetCertification() *StatusUpdateInfoCertification {
+	if x, ok := x.GetStatusUpdate().(*StatusUpdateInfo_Certification); ok {
+		return x.Certification
+	}
+	return nil
+}
+
+type isStatusUpdateInfo_StatusUpdate interface {
+	isStatusUpdateInfo_StatusUpdate()
+}
+
+type StatusUpdateInfo_Service struct {
+	Service *ServiceStatusChange `protobuf:"bytes,1,opt,name=service,proto3,oneof"` // 服务上下线通知
+}
+
+type StatusUpdateInfo_Certification struct {
+	Certification *StatusUpdateInfoCertification `protobuf:"bytes,2,opt,name=certification,proto3,oneof"`
+}
+
+func (*StatusUpdateInfo_Service) isStatusUpdateInfo_StatusUpdate() {}
+
+func (*StatusUpdateInfo_Certification) isStatusUpdateInfo_StatusUpdate() {}
+
+type StatusUpdateInfoCertification struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Address string `protobuf:"bytes,1,opt,name=address,proto3" json:"address,omitempty"`
+}
+
+func (x *StatusUpdateInfoCertification) Reset() {
+	*x = StatusUpdateInfoCertification{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_proto_msgTypes[8]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *StatusUpdateInfoCertification) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*StatusUpdateInfoCertification) ProtoMessage() {}
+
+func (x *StatusUpdateInfoCertification) ProtoReflect() protoreflect.Message {
+	mi := &file_service_proto_msgTypes[8]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use StatusUpdateInfoCertification.ProtoReflect.Descriptor instead.
+func (*StatusUpdateInfoCertification) Descriptor() ([]byte, []int) {
+	return file_service_proto_rawDescGZIP(), []int{8}
+}
+
+func (x *StatusUpdateInfoCertification) GetAddress() string {
+	if x != nil {
+		return x.Address
+	}
+	return ""
+}
+
+type StatusUpdateReq struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// Types that are assignable to StatusUpdate:
+	//	*StatusUpdateReq_Service
+	StatusUpdate isStatusUpdateReq_StatusUpdate `protobuf_oneof:"StatusUpdate"`
+}
+
+func (x *StatusUpdateReq) Reset() {
+	*x = StatusUpdateReq{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_service_proto_msgTypes[9]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *StatusUpdateReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*StatusUpdateReq) ProtoMessage() {}
+
+func (x *StatusUpdateReq) ProtoReflect() protoreflect.Message {
+	mi := &file_service_proto_msgTypes[9]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use StatusUpdateReq.ProtoReflect.Descriptor instead.
+func (*StatusUpdateReq) Descriptor() ([]byte, []int) {
+	return file_service_proto_rawDescGZIP(), []int{9}
+}
+
+func (m *StatusUpdateReq) GetStatusUpdate() isStatusUpdateReq_StatusUpdate {
+	if m != nil {
+		return m.StatusUpdate
+	}
+	return nil
+}
+
+func (x *StatusUpdateReq) GetService() *ServiceStatusChange {
+	if x, ok := x.GetStatusUpdate().(*StatusUpdateReq_Service); ok {
+		return x.Service
+	}
+	return nil
+}
+
+type isStatusUpdateReq_StatusUpdate interface {
+	isStatusUpdateReq_StatusUpdate()
+}
+
+type StatusUpdateReq_Service struct {
+	Service *ServiceStatusChange `protobuf:"bytes,1,opt,name=service,proto3,oneof"` // 服务上下线要求
+}
+
+func (*StatusUpdateReq_Service) isStatusUpdateReq_StatusUpdate() {}
+
 var File_service_proto protoreflect.FileDescriptor
 
 var file_service_proto_rawDesc = []byte{
@@ -328,25 +584,58 @@ var file_service_proto_rawDesc = []byte{
 	0x0b, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x4e, 0x61, 0x6d, 0x65, 0x22, 0x2b, 0x0a, 0x15,
 	0x44, 0x6f, 0x77, 0x6e, 0x6c, 0x6f, 0x61, 0x64, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x52,
 	0x65, 0x73, 0x75, 0x6c, 0x74, 0x12, 0x12, 0x0a, 0x04, 0x64, 0x61, 0x74, 0x61, 0x18, 0x01, 0x20,
-	0x01, 0x28, 0x0c, 0x52, 0x04, 0x64, 0x61, 0x74, 0x61, 0x32, 0x8a, 0x02, 0x0a, 0x07, 0x52, 0x4d,
-	0x61, 0x73, 0x74, 0x65, 0x72, 0x12, 0x54, 0x0a, 0x0f, 0x52, 0x65, 0x67, 0x69, 0x73, 0x74, 0x65,
-	0x72, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x12, 0x1f, 0x2e, 0x72, 0x6d, 0x61, 0x73, 0x74,
-	0x65, 0x72, 0x2e, 0x52, 0x65, 0x67, 0x69, 0x73, 0x74, 0x65, 0x72, 0x53, 0x65, 0x72, 0x76, 0x69,
-	0x63, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x1e, 0x2e, 0x72, 0x6d, 0x61, 0x73,
-	0x74, 0x65, 0x72, 0x2e, 0x52, 0x65, 0x67, 0x69, 0x73, 0x74, 0x65, 0x72, 0x53, 0x65, 0x72, 0x76,
-	0x69, 0x63, 0x65, 0x52, 0x65, 0x73, 0x75, 0x6c, 0x74, 0x22, 0x00, 0x12, 0x51, 0x0a, 0x0e, 0x53,
-	0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x46, 0x69, 0x6c, 0x65, 0x4d, 0x44, 0x35, 0x12, 0x1e, 0x2e,
-	0x72, 0x6d, 0x61, 0x73, 0x74, 0x65, 0x72, 0x2e, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x46,
-	0x69, 0x6c, 0x65, 0x4d, 0x44, 0x35, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x1d, 0x2e,
-	0x72, 0x6d, 0x61, 0x73, 0x74, 0x65, 0x72, 0x2e, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x46,
-	0x69, 0x6c, 0x65, 0x4d, 0x44, 0x35, 0x52, 0x65, 0x73, 0x75, 0x6c, 0x74, 0x22, 0x00, 0x12, 0x56,
-	0x0a, 0x0f, 0x44, 0x6f, 0x77, 0x6e, 0x6c, 0x6f, 0x61, 0x64, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63,
-	0x65, 0x12, 0x1f, 0x2e, 0x72, 0x6d, 0x61, 0x73, 0x74, 0x65, 0x72, 0x2e, 0x44, 0x6f, 0x77, 0x6e,
-	0x6c, 0x6f, 0x61, 0x64, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65,
-	0x73, 0x74, 0x1a, 0x1e, 0x2e, 0x72, 0x6d, 0x61, 0x73, 0x74, 0x65, 0x72, 0x2e, 0x44, 0x6f, 0x77,
-	0x6e, 0x6c, 0x6f, 0x61, 0x64, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x52, 0x65, 0x73, 0x75,
-	0x6c, 0x74, 0x22, 0x00, 0x30, 0x01, 0x42, 0x0c, 0x5a, 0x0a, 0x2e, 0x2f, 0x3b, 0x72, 0x6d, 0x61,
-	0x73, 0x74, 0x65, 0x72, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x01, 0x28, 0x0c, 0x52, 0x04, 0x64, 0x61, 0x74, 0x61, 0x22, 0x73, 0x0a, 0x13, 0x53, 0x65, 0x72,
+	0x76, 0x69, 0x63, 0x65, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x43, 0x68, 0x61, 0x6e, 0x67, 0x65,
+	0x12, 0x20, 0x0a, 0x0b, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x4e, 0x61, 0x6d, 0x65, 0x18,
+	0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0b, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x4e, 0x61,
+	0x6d, 0x65, 0x12, 0x1c, 0x0a, 0x09, 0x6e, 0x65, 0x77, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x18,
+	0x02, 0x20, 0x01, 0x28, 0x08, 0x52, 0x09, 0x6e, 0x65, 0x77, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73,
+	0x12, 0x1c, 0x0a, 0x09, 0x65, 0x78, 0x74, 0x72, 0x61, 0x49, 0x6e, 0x66, 0x6f, 0x18, 0x03, 0x20,
+	0x01, 0x28, 0x09, 0x52, 0x09, 0x65, 0x78, 0x74, 0x72, 0x61, 0x49, 0x6e, 0x66, 0x6f, 0x22, 0xac,
+	0x01, 0x0a, 0x10, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x49,
+	0x6e, 0x66, 0x6f, 0x12, 0x38, 0x0a, 0x07, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x18, 0x01,
+	0x20, 0x01, 0x28, 0x0b, 0x32, 0x1c, 0x2e, 0x72, 0x6d, 0x61, 0x73, 0x74, 0x65, 0x72, 0x2e, 0x53,
+	0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x43, 0x68, 0x61, 0x6e,
+	0x67, 0x65, 0x48, 0x00, 0x52, 0x07, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x12, 0x4e, 0x0a,
+	0x0d, 0x63, 0x65, 0x72, 0x74, 0x69, 0x66, 0x69, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x02,
+	0x20, 0x01, 0x28, 0x0b, 0x32, 0x26, 0x2e, 0x72, 0x6d, 0x61, 0x73, 0x74, 0x65, 0x72, 0x2e, 0x53,
+	0x74, 0x61, 0x74, 0x75, 0x73, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x49, 0x6e, 0x66, 0x6f, 0x43,
+	0x65, 0x72, 0x74, 0x69, 0x66, 0x69, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x48, 0x00, 0x52, 0x0d,
+	0x63, 0x65, 0x72, 0x74, 0x69, 0x66, 0x69, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x42, 0x0e, 0x0a,
+	0x0c, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x22, 0x39, 0x0a,
+	0x1d, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x49, 0x6e, 0x66,
+	0x6f, 0x43, 0x65, 0x72, 0x74, 0x69, 0x66, 0x69, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0x18,
+	0x0a, 0x07, 0x61, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52,
+	0x07, 0x61, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x22, 0x5b, 0x0a, 0x0f, 0x53, 0x74, 0x61, 0x74,
+	0x75, 0x73, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x52, 0x65, 0x71, 0x12, 0x38, 0x0a, 0x07, 0x73,
+	0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1c, 0x2e, 0x72,
+	0x6d, 0x61, 0x73, 0x74, 0x65, 0x72, 0x2e, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x53, 0x74,
+	0x61, 0x74, 0x75, 0x73, 0x43, 0x68, 0x61, 0x6e, 0x67, 0x65, 0x48, 0x00, 0x52, 0x07, 0x73, 0x65,
+	0x72, 0x76, 0x69, 0x63, 0x65, 0x42, 0x0e, 0x0a, 0x0c, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x55,
+	0x70, 0x64, 0x61, 0x74, 0x65, 0x32, 0xd5, 0x02, 0x0a, 0x07, 0x52, 0x4d, 0x61, 0x73, 0x74, 0x65,
+	0x72, 0x12, 0x54, 0x0a, 0x0f, 0x52, 0x65, 0x67, 0x69, 0x73, 0x74, 0x65, 0x72, 0x53, 0x65, 0x72,
+	0x76, 0x69, 0x63, 0x65, 0x12, 0x1f, 0x2e, 0x72, 0x6d, 0x61, 0x73, 0x74, 0x65, 0x72, 0x2e, 0x52,
+	0x65, 0x67, 0x69, 0x73, 0x74, 0x65, 0x72, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x52, 0x65,
+	0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x1e, 0x2e, 0x72, 0x6d, 0x61, 0x73, 0x74, 0x65, 0x72, 0x2e,
+	0x52, 0x65, 0x67, 0x69, 0x73, 0x74, 0x65, 0x72, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x52,
+	0x65, 0x73, 0x75, 0x6c, 0x74, 0x22, 0x00, 0x12, 0x51, 0x0a, 0x0e, 0x53, 0x65, 0x72, 0x76, 0x69,
+	0x63, 0x65, 0x46, 0x69, 0x6c, 0x65, 0x4d, 0x44, 0x35, 0x12, 0x1e, 0x2e, 0x72, 0x6d, 0x61, 0x73,
+	0x74, 0x65, 0x72, 0x2e, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x46, 0x69, 0x6c, 0x65, 0x4d,
+	0x44, 0x35, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x1d, 0x2e, 0x72, 0x6d, 0x61, 0x73,
+	0x74, 0x65, 0x72, 0x2e, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x46, 0x69, 0x6c, 0x65, 0x4d,
+	0x44, 0x35, 0x52, 0x65, 0x73, 0x75, 0x6c, 0x74, 0x22, 0x00, 0x12, 0x56, 0x0a, 0x0f, 0x44, 0x6f,
+	0x77, 0x6e, 0x6c, 0x6f, 0x61, 0x64, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x12, 0x1f, 0x2e,
+	0x72, 0x6d, 0x61, 0x73, 0x74, 0x65, 0x72, 0x2e, 0x44, 0x6f, 0x77, 0x6e, 0x6c, 0x6f, 0x61, 0x64,
+	0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x1e,
+	0x2e, 0x72, 0x6d, 0x61, 0x73, 0x74, 0x65, 0x72, 0x2e, 0x44, 0x6f, 0x77, 0x6e, 0x6c, 0x6f, 0x61,
+	0x64, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x52, 0x65, 0x73, 0x75, 0x6c, 0x74, 0x22, 0x00,
+	0x30, 0x01, 0x12, 0x49, 0x0a, 0x0c, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x55, 0x70, 0x64, 0x61,
+	0x74, 0x65, 0x12, 0x19, 0x2e, 0x72, 0x6d, 0x61, 0x73, 0x74, 0x65, 0x72, 0x2e, 0x53, 0x74, 0x61,
+	0x74, 0x75, 0x73, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x49, 0x6e, 0x66, 0x6f, 0x1a, 0x18, 0x2e,
+	0x72, 0x6d, 0x61, 0x73, 0x74, 0x65, 0x72, 0x2e, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x55, 0x70,
+	0x64, 0x61, 0x74, 0x65, 0x52, 0x65, 0x71, 0x22, 0x00, 0x28, 0x01, 0x30, 0x01, 0x42, 0x0c, 0x5a,
+	0x0a, 0x2e, 0x2f, 0x3b, 0x72, 0x6d, 0x61, 0x73, 0x74, 0x65, 0x72, 0x62, 0x06, 0x70, 0x72, 0x6f,
+	0x74, 0x6f, 0x33,
 }
 
 var (
@@ -361,27 +650,36 @@ func file_service_proto_rawDescGZIP() []byte {
 	return file_service_proto_rawDescData
 }
 
-var file_service_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
+var file_service_proto_msgTypes = make([]protoimpl.MessageInfo, 10)
 var file_service_proto_goTypes = []interface{}{
-	(*RegisterServiceRequest)(nil), // 0: rmaster.RegisterServiceRequest
-	(*RegisterServiceResult)(nil),  // 1: rmaster.RegisterServiceResult
-	(*ServiceFileMD5Request)(nil),  // 2: rmaster.ServiceFileMD5Request
-	(*ServiceFileMD5Result)(nil),   // 3: rmaster.ServiceFileMD5Result
-	(*DownloadServiceRequest)(nil), // 4: rmaster.DownloadServiceRequest
-	(*DownloadServiceResult)(nil),  // 5: rmaster.DownloadServiceResult
+	(*RegisterServiceRequest)(nil),        // 0: rmaster.RegisterServiceRequest
+	(*RegisterServiceResult)(nil),         // 1: rmaster.RegisterServiceResult
+	(*ServiceFileMD5Request)(nil),         // 2: rmaster.ServiceFileMD5Request
+	(*ServiceFileMD5Result)(nil),          // 3: rmaster.ServiceFileMD5Result
+	(*DownloadServiceRequest)(nil),        // 4: rmaster.DownloadServiceRequest
+	(*DownloadServiceResult)(nil),         // 5: rmaster.DownloadServiceResult
+	(*ServiceStatusChange)(nil),           // 6: rmaster.ServiceStatusChange
+	(*StatusUpdateInfo)(nil),              // 7: rmaster.StatusUpdateInfo
+	(*StatusUpdateInfoCertification)(nil), // 8: rmaster.StatusUpdateInfoCertification
+	(*StatusUpdateReq)(nil),               // 9: rmaster.StatusUpdateReq
 }
 var file_service_proto_depIdxs = []int32{
-	0, // 0: rmaster.RMaster.RegisterService:input_type -> rmaster.RegisterServiceRequest
-	2, // 1: rmaster.RMaster.ServiceFileMD5:input_type -> rmaster.ServiceFileMD5Request
-	4, // 2: rmaster.RMaster.DownloadService:input_type -> rmaster.DownloadServiceRequest
-	1, // 3: rmaster.RMaster.RegisterService:output_type -> rmaster.RegisterServiceResult
-	3, // 4: rmaster.RMaster.ServiceFileMD5:output_type -> rmaster.ServiceFileMD5Result
-	5, // 5: rmaster.RMaster.DownloadService:output_type -> rmaster.DownloadServiceResult
-	3, // [3:6] is the sub-list for method output_type
-	0, // [0:3] is the sub-list for method input_type
-	0, // [0:0] is the sub-list for extension type_name
-	0, // [0:0] is the sub-list for extension extendee
-	0, // [0:0] is the sub-list for field type_name
+	6, // 0: rmaster.StatusUpdateInfo.service:type_name -> rmaster.ServiceStatusChange
+	8, // 1: rmaster.StatusUpdateInfo.certification:type_name -> rmaster.StatusUpdateInfoCertification
+	6, // 2: rmaster.StatusUpdateReq.service:type_name -> rmaster.ServiceStatusChange
+	0, // 3: rmaster.RMaster.RegisterService:input_type -> rmaster.RegisterServiceRequest
+	2, // 4: rmaster.RMaster.ServiceFileMD5:input_type -> rmaster.ServiceFileMD5Request
+	4, // 5: rmaster.RMaster.DownloadService:input_type -> rmaster.DownloadServiceRequest
+	7, // 6: rmaster.RMaster.StatusUpdate:input_type -> rmaster.StatusUpdateInfo
+	1, // 7: rmaster.RMaster.RegisterService:output_type -> rmaster.RegisterServiceResult
+	3, // 8: rmaster.RMaster.ServiceFileMD5:output_type -> rmaster.ServiceFileMD5Result
+	5, // 9: rmaster.RMaster.DownloadService:output_type -> rmaster.DownloadServiceResult
+	9, // 10: rmaster.RMaster.StatusUpdate:output_type -> rmaster.StatusUpdateReq
+	7, // [7:11] is the sub-list for method output_type
+	3, // [3:7] is the sub-list for method input_type
+	3, // [3:3] is the sub-list for extension type_name
+	3, // [3:3] is the sub-list for extension extendee
+	0, // [0:3] is the sub-list for field type_name
 }
 
 func init() { file_service_proto_init() }
@@ -462,6 +760,61 @@ func file_service_proto_init() {
 				return nil
 			}
 		}
+		file_service_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ServiceStatusChange); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*StatusUpdateInfo); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*StatusUpdateInfoCertification); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_service_proto_msgTypes[9].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*StatusUpdateReq); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+	}
+	file_service_proto_msgTypes[7].OneofWrappers = []interface{}{
+		(*StatusUpdateInfo_Service)(nil),
+		(*StatusUpdateInfo_Certification)(nil),
+	}
+	file_service_proto_msgTypes[9].OneofWrappers = []interface{}{
+		(*StatusUpdateReq_Service)(nil),
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
@@ -469,7 +822,7 @@ func file_service_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_service_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   6,
+			NumMessages:   10,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
@@ -498,6 +851,7 @@ type RMasterClient interface {
 	RegisterService(ctx context.Context, in *RegisterServiceRequest, opts ...grpc.CallOption) (*RegisterServiceResult, error)
 	ServiceFileMD5(ctx context.Context, in *ServiceFileMD5Request, opts ...grpc.CallOption) (*ServiceFileMD5Result, error)
 	DownloadService(ctx context.Context, in *DownloadServiceRequest, opts ...grpc.CallOption) (RMaster_DownloadServiceClient, error)
+	StatusUpdate(ctx context.Context, opts ...grpc.CallOption) (RMaster_StatusUpdateClient, error)
 }
 
 type rMasterClient struct {
@@ -558,11 +912,43 @@ func (x *rMasterDownloadServiceClient) Recv() (*DownloadServiceResult, error) {
 	return m, nil
 }
 
+func (c *rMasterClient) StatusUpdate(ctx context.Context, opts ...grpc.CallOption) (RMaster_StatusUpdateClient, error) {
+	stream, err := c.cc.NewStream(ctx, &_RMaster_serviceDesc.Streams[1], "/rmaster.RMaster/StatusUpdate", opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &rMasterStatusUpdateClient{stream}
+	return x, nil
+}
+
+type RMaster_StatusUpdateClient interface {
+	Send(*StatusUpdateInfo) error
+	Recv() (*StatusUpdateReq, error)
+	grpc.ClientStream
+}
+
+type rMasterStatusUpdateClient struct {
+	grpc.ClientStream
+}
+
+func (x *rMasterStatusUpdateClient) Send(m *StatusUpdateInfo) error {
+	return x.ClientStream.SendMsg(m)
+}
+
+func (x *rMasterStatusUpdateClient) Recv() (*StatusUpdateReq, error) {
+	m := new(StatusUpdateReq)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
 // RMasterServer is the server API for RMaster service.
 type RMasterServer interface {
 	RegisterService(context.Context, *RegisterServiceRequest) (*RegisterServiceResult, error)
 	ServiceFileMD5(context.Context, *ServiceFileMD5Request) (*ServiceFileMD5Result, error)
 	DownloadService(*DownloadServiceRequest, RMaster_DownloadServiceServer) error
+	StatusUpdate(RMaster_StatusUpdateServer) error
 }
 
 // UnimplementedRMasterServer can be embedded to have forward compatible implementations.
@@ -577,6 +963,9 @@ func (*UnimplementedRMasterServer) ServiceFileMD5(context.Context, *ServiceFileM
 }
 func (*UnimplementedRMasterServer) DownloadService(*DownloadServiceRequest, RMaster_DownloadServiceServer) error {
 	return status.Errorf(codes.Unimplemented, "method DownloadService not implemented")
+}
+func (*UnimplementedRMasterServer) StatusUpdate(RMaster_StatusUpdateServer) error {
+	return status.Errorf(codes.Unimplemented, "method StatusUpdate not implemented")
 }
 
 func RegisterRMasterServer(s *grpc.Server, srv RMasterServer) {
@@ -640,6 +1029,32 @@ func (x *rMasterDownloadServiceServer) Send(m *DownloadServiceResult) error {
 	return x.ServerStream.SendMsg(m)
 }
 
+func _RMaster_StatusUpdate_Handler(srv interface{}, stream grpc.ServerStream) error {
+	return srv.(RMasterServer).StatusUpdate(&rMasterStatusUpdateServer{stream})
+}
+
+type RMaster_StatusUpdateServer interface {
+	Send(*StatusUpdateReq) error
+	Recv() (*StatusUpdateInfo, error)
+	grpc.ServerStream
+}
+
+type rMasterStatusUpdateServer struct {
+	grpc.ServerStream
+}
+
+func (x *rMasterStatusUpdateServer) Send(m *StatusUpdateReq) error {
+	return x.ServerStream.SendMsg(m)
+}
+
+func (x *rMasterStatusUpdateServer) Recv() (*StatusUpdateInfo, error) {
+	m := new(StatusUpdateInfo)
+	if err := x.ServerStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
 var _RMaster_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "rmaster.RMaster",
 	HandlerType: (*RMasterServer)(nil),
@@ -658,6 +1073,12 @@ var _RMaster_serviceDesc = grpc.ServiceDesc{
 			StreamName:    "DownloadService",
 			Handler:       _RMaster_DownloadService_Handler,
 			ServerStreams: true,
+		},
+		{
+			StreamName:    "StatusUpdate",
+			Handler:       _RMaster_StatusUpdate_Handler,
+			ServerStreams: true,
+			ClientStreams: true,
 		},
 	},
 	Metadata: "service.proto",
